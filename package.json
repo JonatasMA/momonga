@@ -30,5 +30,20 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "JonatasMA",
+              "name": "momonga"
+            }
+          }
+        }
+      ]
+    }
   }
 }
