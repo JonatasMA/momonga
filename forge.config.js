@@ -1,10 +1,12 @@
 module.exports = {
-  packagerConfig: {},
-  rebuildConfig: {},
+  // packagerConfig: {},
+  // rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+        name: "momonga"
+      },
     },
     {
       name: '@electron-forge/maker-zip',
