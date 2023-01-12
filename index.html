@@ -17,38 +17,40 @@
             <input id="url" type="url">
             <label>URL</label>
         </div>
-        <div class="field label suffix border round">
+        <div class="field label suffix border round ">
             <input type="text">
             <input id="file" type="file">
             <label>File</label>
             <i>attach_file</i>
         </div>
-        <button id="send" class="round" style="width:fit-content" onclick="sendData()">
-            <i>send</i>
-            <span>Send</span>
-        </button>
+        <div class="send-line">
+            <div class="field label suffix border round" style="width: -webkit-fill-available;">
+                <select id="delay">
+                    <option value="2">2 seconds</option>
+                    <option value="3">3 seconds</option>
+                    <option value="4">4 seconds</option>
+                    <option value="5">5 seconds</option>
+                    <option value="10">10 seconds</option>
+                </select>
+                <label class="active">Delay</label>
+                <i>arrow_drop_down</i>
+            </div>
+            <button id="send" class="round send-button" onclick="sendData()">
+                <div class="progress left light-green" id="progress"></div>
+                <i>send</i>
+                <span>Send</span>
+            </button>
+        </div>
+        <!-- <div class="small-space border">
+            <div class="progress left light-green" id="progress"></div>
+        </div> -->
         <div class="field label textarea border round large">
-            <textarea id="result">]
-                asdas
-                asd
-                <aside><datagrid>sd
-                    asda
-                    sd
-                    <aside><datagrid><aside><datagrid>sd
-                        <aside><datagrid>sd
-                            as
-                        </datagrid></aside>
-                    </datagrid></aside></datagrid></aside>
-                </datagrid></aside>
-            </textarea>
+            <textarea id="result"></textarea>
             <div class="floating-button" onclick="download()">
                 <a class="chip circle" ><i>Download</i></a>
             </div>
             <label>Return</label>
         </div>
-        <!-- <button class="round" style="width:fit-content">
-            <i>Download</i>
-        </button> -->
     </div>
     <script src="./src/utils.js"></script>
 </body>

@@ -6,13 +6,28 @@
     justify-content: center;
     align-items: stretch;
     flex-wrap: nowrap;
-    margin: 10%;
+    margin: 9%;
 }
 
 .floating-button {
     position: relative;
     float: right;
     top: -95px;
+}
+
+.send-line {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.send-button {
+    width: 100px;
+    margin-bottom: 32px;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 ::-webkit-scrollbar {

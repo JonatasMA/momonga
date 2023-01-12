@@ -1,6 +1,7 @@
 const fileInput = document.getElementById('file');
 const urlInput = document.getElementById('url');
 const resultArea = document.getElementById('result');
+const delaySelect = document.getElementById('delay');
 const button = document.getElementById('send');
 const loader = document.createElement('a');
 loader.classList = "loader small white";
@@ -14,8 +15,8 @@ function sendData() {
     }
 
     switch (file.type) {
-        case 'text/csv':
-            break;
+        // case 'text/csv':
+        //     break;
         case 'application/json':
             var reader = new FileReader();
             reader.onload = function () {
@@ -26,7 +27,7 @@ function sendData() {
 
             break;
         default:
-            alert('File type is wrong');
+            alert('The file must be a valid json.');
             return false;
     }
 
@@ -38,9 +39,10 @@ async function fetchHandler(data) {
         data = [data];
     }
 
+    var i = 0;
     for (piece of data) {
         await delayFetch(urlInput.value, {
-            delay: 2000,
+            delay: delaySelect.value*1000,
             method: "POST",
             body: JSON.stringify(piece),
             headers: {
@@ -50,6 +52,8 @@ async function fetchHandler(data) {
             .then((response) => response.json())
             .then((json) => {
                 result.push(json);
+                i++;
+                ui("#progress", i * 100 / data.length);
                 resultArea.value = JSON.stringify(result, null, 4)
             });
     }
@@ -69,6 +73,9 @@ function toggleButton() {
     if (button.hasAttribute('disabled')) {
         button.removeAttribute('disabled')
         button.removeChild(loader)
+        setTimeout(() => {
+            ui("#progress", 0);
+        }, 2000);
     } else {
         button.setAttribute('disabled', 'disabled')
         button.appendChild(
