@@ -9,50 +9,120 @@
     <meta charset="UTF-8">
     <title>Momonga</title>
     <link href="./assets/css/main.css" rel="stylesheet" />
+    <link id="code-sheet" rel="stylesheet" href="./src/highlight/styles/default.min.css">
+    <script src="./src/highlight/highlight.min.js"></script>
 </head>
 
 <body>
-    <div class="main-div">
-        <div class="field label border round">
+    <main class="responsive" style="min-height: 85vh;">
+        <div class="field fill large label s12">
             <input id="url" type="url">
             <label>URL</label>
         </div>
-        <div class="field label suffix border round ">
+        <div class="field fill large label suffix s12">
             <input type="text">
             <input id="file" type="file">
             <label>File</label>
             <i>attach_file</i>
         </div>
-        <div class="send-line">
-            <div class="field label suffix border round" style="width: -webkit-fill-available;">
-                <select id="delay">
-                    <option value="2">2 seconds</option>
-                    <option value="3">3 seconds</option>
-                    <option value="4">4 seconds</option>
-                    <option value="5">5 seconds</option>
-                    <option value="10">10 seconds</option>
-                </select>
-                <label class="active">Delay</label>
-                <i>arrow_drop_down</i>
+        <div>
+            <pre><code class="json code-block" id="result">
+            </code></pre>
+            <button class="circle transparent floating-download-button" onclick="download()">
+                <i>download</i>
+            </button>
+            <!-- <button class="large tertiary send-button" disabled="disabled" onclick="download()">
+                <span>Download</span>
+            </button> -->
+        </div>
+    </main>
+    <!-- <div class="grid no-space">
+        
+    </div> -->
+    <div class="toast pink white-text">
+        <i>error</i>
+        <span>Some text here</span>
+    </div>
+    <div class="toast orange white-text">
+        <i>warning</i>
+        <span>Some text here</span>
+    </div>
+    <div id="toast-done" class="toast green white-text">
+        <i>done</i>
+        <span>Everyting is done!</span>
+    </div>
+    <div id="toast-info" class="toast blue white-text">
+        <i>info</i>
+        <span>Canceled!</span>
+    </div>
+    <footer class="fill">
+        <nav>
+            <div class="field large label">
+                <input id="delay" type="number" min="2" , max="10" value="2">
+                <label>Delay</label>
             </div>
-            <button id="send" class="round send-button" onclick="sendData()">
+            <!-- <button class="circle transparent">
+                <i>check_box_filled</i>
+            </button>
+            <button class="circle transparent">
+                <i>brush</i>
+            </button>
+            <button class="circle transparent">
+                <i>mic</i>
+            </button>
+            <button class="circle transparent">
+                <i>image</i>
+            </button> -->
+            <div class="max"></div>
+            <button id="cancel" onclick="cancel()" class="extend square round error" disabled="disabled"">
+                <i>cancel</i>
+                <span>Cancelar</span>
+            </button>
+            <button class=" extend square round tertiary" id="send" onclick="sendData()">
                 <div class="progress left light-green" id="progress"></div>
-                <i>send</i>
+                <i id="icon">send</i>
                 <span>Send</span>
             </button>
-        </div>
-        <!-- <div class="small-space border">
-            <div class="progress left light-green" id="progress"></div>
-        </div> -->
-        <div class="field label textarea border round large">
-            <textarea id="result"></textarea>
-            <div class="floating-button" onclick="download()">
-                <a class="chip circle" ><i>Download</i></a>
-            </div>
-            <label>Return</label>
-        </div>
-    </div>
+        </nav>
+    </footer>
     <script src="./src/utils.js"></script>
+    <script>
+        (function () {
+
+            document.addEventListener('DOMContentLoaded', function (event) {
+
+                var list = document.querySelectorAll('.make-snippet');
+
+                [].forEach.call(list, function (el) {
+                    var snippet = el.innerHTML.replace(/</g, '&lt;');
+                    snippet = snippet.replace(/ /g, '&nbsp;');
+                    var code = '<pre class="language-markup"><code>' + snippet + '</pre></code>';
+                    el.insertAdjacentHTML('afterend', code);
+                });
+
+                // if your page has prism.js you get syntax highlighting
+                if (window.Prism) {
+                    Prism.highlightAll(false);
+                }
+
+            });
+
+        })();
+    </script>
+    <script>hljs.highlightAll();</script>
+    <!-- <script>
+        const remote = require('electron').remote;
+        const Menu = require('electron').Menu;
+        const MenuItem = require('electron').MenuItem;
+
+        let meuMenu = new Menu();
+        meuMenu.append(new MenuItem({label: 'Theme', click: ()=>{ui('theme', 'dark')}}))
+        window.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            meuMenu.popup();
+            console.log('oi?');
+        }, false);
+    </script> -->
 </body>
 
 </html>

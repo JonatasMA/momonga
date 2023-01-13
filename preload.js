@@ -10,3 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
         replaceText(`${type}-version`, process.versions[type])
     }
 })
+
+contextBridge.exposeInMainWorld('electronAPI', {
+    toggleTheme: (callback) => ipcRenderer.on('toggle-theme', callback)
+})

@@ -1,5 +1,84 @@
 @import "https://cdn.jsdelivr.net/npm/beercss@3.0.4/dist/cdn/beer.min.css";
 
+:root,
+body.light {
+    --primary: #47680f;
+    --on-primary: #ffffff;
+    --primary-container: #c7f089;
+    --on-primary-container: #121f00;
+    --secondary: #006d39;
+    --on-secondary: #ffffff;
+    --secondary-container: #9bf6b3;
+    --on-secondary-container: #00210d;
+    --tertiary: #755b00;
+    --on-tertiary: #ffffff;
+    --tertiary-container: #ffe08f;
+    --on-tertiary-container: #241a00;
+    --error: #ba1a1a;
+    --on-error: #ffffff;
+    --error-container: #ffdad6;
+    --on-error-container: #410002;
+    --background: #f7ffec;
+    --on-background: #082100;
+    --surface: #f7ffec;
+    --on-surface: #082100;
+    --surface-variant: #e1e4d5;
+    --on-surface-variant: #45483d;
+    --inverse-surface: #313033;
+    --inverse-on-surface: #F4EFF4;
+    --outline: #75786c;
+    --active: rgba(0, 0, 0, .1);
+    --overlay: rgba(0, 0, 0, .5);
+    --elevate1: 0 2rem 2rem 0 rgba(0, 0, 0, .14), 0 1rem 5rem 0 rgba(0, 0, 0, .12), 0 3rem 1rem -2rem rgba(0, 0, 0, .2);
+    --elevate2: 0 6rem 10rem 0 rgba(0, 0, 0, .14), 0 1rem 18rem 0 rgba(0, 0, 0, .12), 0 3rem 5rem -1rem rgba(0, 0, 0, .3);
+    --elevate3: 0 10rem 16rem 0 rgba(0, 0, 0, .14), 0 1rem 31rem 0 rgba(0, 0, 0, .12), 0 3rem 9rem 0rem rgba(0, 0, 0, .4);
+    --size: 16px;
+    --font: "Roboto Flex", "Roboto", sans-serif, system-ui, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial";
+    --speed1: .1s;
+    --speed2: .2s;
+    --speed3: .3s;
+    --speed4: .4s;
+}
+
+body.dark {
+    --primary: #acd370;
+    --on-primary: #223600;
+    --primary-container: #334f00;
+    --on-primary-container: #c7f089;
+    --secondary: #7fd999;
+    --on-secondary: #00391b;
+    --secondary-container: #005229;
+    --on-secondary-container: #9bf6b3;
+    --tertiary: #ecc248;
+    --on-tertiary: #3d2e00;
+    --tertiary-container: #584400;
+    --on-tertiary-container: #ffe08f;
+    --error: #ffb4ab;
+    --on-error: #690005;
+    --error-container: #93000a;
+    --on-error-container: #ffdad6;
+    --background: #082100;
+    --on-background: #b9f396;
+    --surface: #082100;
+    --on-surface: #b9f396;
+    --surface-variant: #45483d;
+    --on-surface-variant: #c5c8b9;
+    --inverse-surface: #E6E1E5;
+    --inverse-on-surface: #313033;
+    --outline: #8f9285;
+    --active: rgba(255, 255, 255, .2);
+    --overlay: rgba(0, 0, 0, .5);
+    --elevate1: 0 2rem 2rem 0 rgba(0, 0, 0, .14), 0 1rem 5rem 0 rgba(0, 0, 0, .12), 0 3rem 1rem -2rem rgba(0, 0, 0, .2);
+    --elevate2: 0 6rem 10rem 0 rgba(0, 0, 0, .14), 0 1rem 18rem 0 rgba(0, 0, 0, .12), 0 3rem 5rem -1rem rgba(0, 0, 0, .3);
+    --elevate3: 0 10rem 16rem 0 rgba(0, 0, 0, .14), 0 1rem 31rem 0 rgba(0, 0, 0, .12), 0 3rem 9rem 0rem rgba(0, 0, 0, .4);
+    --size: 16px;
+    --font: "Roboto Flex", "Roboto", sans-serif, system-ui, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial";
+    --speed1: .1s;
+    --speed2: .2s;
+    --speed3: .3s;
+    --speed4: .4s;
+}
+
 .main-div {
     display: flex;
     flex-direction: column;
@@ -9,10 +88,10 @@
     margin: 9%;
 }
 
-.floating-button {
+.floating-download-button {
     position: relative;
-    float: right;
-    top: -95px;
+    top: -235px;
+    left: 719px;
 }
 
 .send-line {
@@ -21,6 +100,7 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
+    margin-top: 16px;
 }
 
 .send-button {
@@ -30,20 +110,28 @@
     flex-wrap: wrap;
 }
 
+.code-block {
+    height: 239px;
+    border-radius: 3px;
+    border: 0.0625rem solid transparent;
+    background: var(--surface-variant) !important;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 100px;
+    background: var(--outline);
+    border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 100px;
+    background: var(--on-surface-variant);
+    border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: var(--on-surface-variant);
 }
