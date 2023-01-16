@@ -1,73 +1,79 @@
 {
-  "name": "momonga",
-  "version": "1.0.0",
-  "description": "A importer tool",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "publish": "electron-forge publish",
-    "import": "electron-forge import",
-    "make": "electron-forge make"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JonatasMA/momonga.git"
-  },
-  "author": "JonatasMA",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JonatasMA/momonga/issues"
-  },
-  "homepage": "https://github.com/JonatasMA/momonga#readme",
-  "devDependencies": {
-    "@electron-forge/cli": "^6.0.4",
-    "@electron-forge/maker-deb": "^6.0.4",
-    "@electron-forge/maker-rpm": "^6.0.4",
-    "@electron-forge/maker-squirrel": "^6.0.4",
-    "@electron-forge/maker-zip": "^6.0.4",
-    "@electron-forge/publisher-github": "^6.0.4",
-    "electron": "^22.0.1"
-  },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
-  },
-  "config": {
-    "forge": {
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "momonga"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
+    "name": "momonga",
+    "version": "1.0.0",
+    "description": "A importer tool",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "electron-forge start",
+        "package": "electron-forge package",
+        "publish": "electron-forge publish",
+        "import": "electron-forge import",
+        "make": "electron-forge make"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JonatasMA/momonga.git"
+    },
+    "author": "JonatasMA",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/JonatasMA/momonga/issues"
+    },
+    "homepage": "https://github.com/JonatasMA/momonga#readme",
+    "devDependencies": {
+        "@electron-forge/cli": "^6.0.4",
+        "@electron-forge/maker-deb": "^6.0.4",
+        "@electron-forge/maker-rpm": "^6.0.4",
+        "@electron-forge/maker-squirrel": "^6.0.4",
+        "@electron-forge/maker-zip": "^6.0.4",
+        "@electron-forge/publisher-github": "^6.0.4",
+        "electron": "^22.0.1"
+    },
+    "build": {
+        "appId": "com.momonga.app"
+    },
+    "directories": {
+        "buildResources": "assets/img/*"
+    },
+    "dependencies": {
+        "electron-squirrel-startup": "^1.0.0"
+    },
+    "config": {
+        "forge": {
+            "makers": [
+                {
+                    "name": "@electron-forge/maker-squirrel",
+                    "config": {
+                        "name": "momonga"
+                    }
+                },
+                {
+                    "name": "@electron-forge/maker-zip",
+                    "platforms": [
+                        "darwin"
+                    ]
+                },
+                {
+                    "name": "@electron-forge/maker-deb",
+                    "config": {}
+                },
+                {
+                    "name": "@electron-forge/maker-rpm",
+                    "config": {}
+                }
+            ],
+            "publishers": [
+                {
+                    "name": "@electron-forge/publisher-github",
+                    "config": {
+                        "repository": {
+                            "owner": "JonatasMA",
+                            "name": "momonga"
+                        }
+                    }
+                }
+            ]
         }
-      ],
-      "publishers": [
-        {
-          "name": "@electron-forge/publisher-github",
-          "config": {
-            "repository": {
-              "owner": "JonatasMA",
-              "name": "momonga"
-            }
-          }
-        }
-      ]
     }
-  }
 }

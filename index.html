@@ -26,7 +26,9 @@
             <i>attach_file</i>
         </div>
         <div>
-            <pre><code class="json code-block" id="result">
+            <h6 class="small" style="position: fixed; z-index: 1; top: 200px; left: 24px; color: var(--on-surface-variant);">Result
+            </h6>
+            <pre><code class="json code-block" style="border-bottom: 1px solid var(--outline);" id="result">
             </code></pre>
             <button class="circle transparent floating-download-button" onclick="download()">
                 <i>download</i>
@@ -43,9 +45,9 @@
         <i>error</i>
         <span>Some text here</span>
     </div>
-    <div class="toast orange white-text">
+    <div id="toast-warn" class="toast orange white-text">
         <i>warning</i>
-        <span>Some text here</span>
+        <span>The file must be a valid json.</span>
     </div>
     <div id="toast-done" class="toast green white-text">
         <i>done</i>

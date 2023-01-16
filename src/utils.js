@@ -30,7 +30,7 @@ function sendData() {
 
             break;
         default:
-            alert('The file must be a valid json.');
+            ui("#toast-warn", 2000);
             return false;
     }
 
@@ -57,7 +57,6 @@ async function fetchHandler(data) {
                 .then((json) => {
                     result.push(json);
                     i++;
-                    ui("#progress", i * 100 / data.length);
                     resultArea.textContent = JSON.stringify(result, null, 4)
                     hljs.highlightElement(resultArea);
                 });
@@ -84,6 +83,8 @@ function delayFetch(url, options) {
 function toggleButton() {
     if (sendButton.hasAttribute('disabled')) {
         sendButton.removeAttribute('disabled')
+        urlInput.removeAttribute('disabled')
+        fileInput.removeAttribute('disabled')
         cancelButton.setAttribute('disabled', 'disabled')
         document.getElementById('icon').style = '';
         sendButton.removeChild(loader)
@@ -92,6 +93,8 @@ function toggleButton() {
         }, 2000);
     } else {
         sendButton.setAttribute('disabled', 'disabled')
+        urlInput.setAttribute('disabled', 'disabled')
+        fileInput.setAttribute('disabled', 'disabled')
         cancelButton.removeAttribute('disabled');
         document.getElementById('icon').style = 'display: none';
         sendButton.appendChild(

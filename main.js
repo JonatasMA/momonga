@@ -12,12 +12,14 @@ async function handleFileOpen() {
     }
 }
 
+const icon = __dirname + (isMac ? '/assets/img/icon512.png' : '/assets/img/icon.png');
+
 function createWindow() {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
         resizable: false,
-        icon: __dirname + '/assets/img/momonga.png',
+        icon: icon,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
@@ -27,7 +29,7 @@ function createWindow() {
 
     const template = [
         ...(isMac ? [{
-            label: app.name,
+            label: 'Momonga',
             submenu: [
                 { role: 'about' },
                 { type: 'separator' },
@@ -127,6 +129,10 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+    if (process.platform === 'darwin') {
+        app.dock.setIcon(icon)
+    }
+
     ipcMain.handle('dialog:openFile', handleFileOpen);
     createWindow()
 
