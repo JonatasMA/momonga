@@ -1,9 +1,12 @@
 const fileInput = document.getElementById('file');
+const fileTextInput = document.getElementById('fileText');
 const urlInput = document.getElementById('url');
 const resultArea = document.getElementById('result');
 const delaySelect = document.getElementById('delay');
 const sendButton = document.getElementById('send');
 const cancelButton = document.getElementById('cancel');
+const downloadButton = document.getElementById('download');
+const labelResult = document.getElementById('labelResult');
 const loader = document.createElement('a');
 loader.classList = "loader small white";
 const result = [];
@@ -13,7 +16,7 @@ function sendData() {
     const file = fileInput.files[0];
 
     if (!file) {
-        alert('File is required');
+        ui("#toast-required", 2000);
         return false;
     }
 
@@ -43,6 +46,8 @@ async function fetchHandler(data) {
     }
 
     var i = 0;
+    labelResult.className = 'active';
+    resultArea.textContent = 'Carregando...';
     for (piece of data) {
         if (!canceled) {
             await delayFetch(urlInput.value, {
@@ -57,7 +62,11 @@ async function fetchHandler(data) {
                 .then((json) => {
                     result.push(json);
                     i++;
+                    ui("#progress", i * 100 / data.length);
                     resultArea.textContent = JSON.stringify(result, null, 4)
+                    if (downloadButton.hasAttribute('disabled')) {
+                        downloadButton.removeAttribute('disabled');
+                    }
                     hljs.highlightElement(resultArea);
                 });
         }
@@ -84,7 +93,8 @@ function toggleButton() {
     if (sendButton.hasAttribute('disabled')) {
         sendButton.removeAttribute('disabled')
         urlInput.removeAttribute('disabled')
-        fileInput.removeAttribute('disabled')
+        fileTextInput.removeAttribute('disabled')
+        fileInput.style = '';
         cancelButton.setAttribute('disabled', 'disabled')
         document.getElementById('icon').style = '';
         sendButton.removeChild(loader)
@@ -94,7 +104,8 @@ function toggleButton() {
     } else {
         sendButton.setAttribute('disabled', 'disabled')
         urlInput.setAttribute('disabled', 'disabled')
-        fileInput.setAttribute('disabled', 'disabled')
+        fileTextInput.setAttribute('disabled', 'disabled')
+        fileInput.style = 'display: none';
         cancelButton.removeAttribute('disabled');
         document.getElementById('icon').style = 'display: none';
         sendButton.appendChild(
@@ -133,3 +144,11 @@ window.electronAPI.toggleTheme((event, theme) => {
             break;
     }
 })
+
+function toggleLabel() {
+    if (labelResult.className == 'active') {
+        labelResult.className = '';
+    } else {
+        labelResult.className = 'active';
+    }
+}

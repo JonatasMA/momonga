@@ -112,9 +112,12 @@ body.dark {
 
 .code-block {
     height: 239px;
-    border-radius: 3px;
     border: 0.0625rem solid transparent;
     background: var(--surface-variant) !important;
+    padding-top: 25px!important;
+    padding-left: 12px!important;
+    border-bottom: 1px solid var(--outline);
+    border-radius: 4px 4px 0px 0px;
 }
 
 ::-webkit-scrollbar {

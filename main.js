@@ -21,8 +21,8 @@ function createWindow() {
         resizable: false,
         icon: icon,
         webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: true,
+            // nodeIntegration: true,
+            // contextIsolation: true,
             preload: path.join(__dirname, 'preload.js')
         }
     })
