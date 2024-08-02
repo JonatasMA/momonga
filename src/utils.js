@@ -7,12 +7,15 @@ const sendButton = document.getElementById('send');
 const cancelButton = document.getElementById('cancel');
 const downloadButton = document.getElementById('download');
 const labelResult = document.getElementById('labelResult');
-const loader = document.createElement('a');
-loader.classList = "loader small white";
 const result = [];
 var canceled = false;
+var downloaded = false;
+
 
 function sendData() {
+    if (result.length > 0 && !downloaded) {
+        checkPreviousData();
+    }
     const file = fileInput.files[0];
 
     if (!file) {
@@ -40,14 +43,16 @@ function sendData() {
     toggleButton();
 }
 
+function checkPreviousData() {
+    ui('#download-popup').showModal();
+}
+
 async function fetchHandler(data) {
     if (!Array.isArray(data)) {
         data = [data];
     }
 
     var i = 0;
-    labelResult.className = 'active';
-    resultArea.textContent = 'Carregando...';
     for (piece of data) {
         if (!canceled) {
             await delayFetch(urlInput.value, {
@@ -58,7 +63,7 @@ async function fetchHandler(data) {
                     "Content-type": "application/json; charset=UTF-8",
                 },
             })
-                .then((response) => response.json())
+                .then((response) => {response.json() || false})
                 .then((json) => {
                     result.push(json);
                     i++;
@@ -84,7 +89,11 @@ async function fetchHandler(data) {
 function delayFetch(url, options) {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(fetch(url, options));
+            try {
+                resolve(fetch(url, options));
+            } catch (e) {
+                ui("#toast-warn", 2000);
+            }
         }, options.delay);
     });
 }
@@ -108,9 +117,7 @@ function toggleButton() {
         fileInput.style = 'display: none';
         cancelButton.removeAttribute('disabled');
         document.getElementById('icon').style = 'display: none';
-        sendButton.appendChild(
-            loader
-        );
+        sendButton.appendChild(loader);
     }
 }
 
@@ -130,6 +137,13 @@ function download() {
     element.click();
 
     document.body.removeChild(element);
+    downloaded = true;
+    deleteLog()
+}
+
+function deleteLog() {
+    result = [];
+    downloaded = false;
 }
 
 window.electronAPI.toggleTheme((event, theme) => {

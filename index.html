@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/beercss@3.0.4/dist/cdn/beer.min.css" rel="stylesheet" />
-    <script crossorigin type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.0.4/dist/cdn/beer.min.js"></script>
-    <script crossorigin type="module"
-        src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@0.1.5/dist/cdn/material-dynamic-colors.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/beercss@3.6.12/dist/cdn/beer.min.css" rel="stylesheet">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.6.12/dist/cdn/beer.min.js"></script>
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
     <meta charset="UTF-8">
     <title>Momonga</title>
     <link href="./assets/css/main.css" rel="stylesheet" />
@@ -15,42 +15,56 @@
 
 <body>
     <main class="responsive" style="min-height: 85vh;">
-        <div class="field fill large label s12">
+        <div class="field label fill large s12">
             <input id="url" type="url">
             <label>URL</label>
         </div>
-        <div class="field fill large label suffix s12">
-            <input id="fileText" type="text">
+        <div class="field label suffix fill large s12">
             <input id="file" type="file">
+            <input id="fileText" type="text">
             <label>File</label>
             <i>attach_file</i>
         </div>
-        <div class="field label">
-            <!-- <h6 class="small" style="position: fixed; z-index: 1; top: 200px; left: 24px; color: var(--on-surface-variant);">Result</h6> -->
-            <pre><code class="json code-block" style="border-bottom: 1px solid var(--outline);" id="result"></code></pre>
-            <button id="download" class="circle transparent floating-download-button" onclick="download()" disabled="disabled">
-                <i>download</i>
-            </button>
-            <label id="labelResult">Result</label>
-        </div>
+        
+        <article class="fill scroll code-block">
+            <pre class="reset"><code class="json" style="background-color: unset;" id="result"></code></pre>
+            <footer class="fixed custom-footer">
+                <button id="download" class="transparent circle" onclick="download()" disabled="disabled">
+                    <i>download</i>
+                </button>
+                <button id="delete" class="transparent circle" onclick="deleteLog()" disabled="disabled">
+                    <i>delete</i>
+                </button>
+                <p style="margin-top: 8px;">0 / 0</p>
+            </footer>
+        </article>
     </main>
-    <div class="toast pink white-text">
+    <div class="overlay blur"></div>
+    <dialog id="download-popup">
+        <h5>You want to download log?</h5>
+        <div>Some text here</div>
+        <nav class="right-align no-space">
+            <button class="transparent link" onclick="deleteLog()" data-ui="#download-popup">Cancel</button>
+            <button class="transparent link" onclick="download()" data-ui="#download-popup">Confirm</button>
+        </nav>
+    </dialog>
+    <div class="snackbar pink white-text">
         <i>error</i>
         <span>Some text here</span>
     </div>
-    <div id="toast-warn" class="toast orange white-text">
+    <div id="toast-warn" class="snackbar orange white-text">
         <i>warning</i>
         <span>The file must be a valid json.</span>
     </div>
-    <div id="toast-required" class="toast orange white-text">
+    <div id="toast-required" class="snackbar orange white-text">
         <i>warning</i>
         <span>File is required.</span>
     </div>
-    <div id="toast-done" class="toast green white-text">
+    <div id="toast-done" class="snackbar green white-text">
         <i>done</i>
         <span>Everyting is done!</span>
     </div>
-    <div id="toast-info" class="toast blue white-text">
+    <div id="toast-info" class="snackbar blue white-text">
         <i>info</i>
         <span>Canceled!</span>
     </div>
@@ -61,14 +75,15 @@
                 <label>Delay</label>
             </div>
             <div class="max"></div>
-            <button id="cancel" onclick="cancel()" class="extend square round error" disabled="disabled">
-                <i>cancel</i>
+            <button class="small-round error extra"  id="cancel" onclick="cancel()" disabled="disabled">
                 <span>Cancelar</span>
+                <i>cancel</i>
             </button>
-            <button class=" extend square round tertiary" id="send" onclick="sendData()">
+            <button class="small-round tertiary extra" id="send" onclick="sendData()">
                 <div class="progress left light-green" id="progress"></div>
-                <i id="icon">send</i>
                 <span>Send</span>
+                <i id="icon">send</i>
+                <progress class="circle small"></progress>
             </button>
         </nav>
     </footer>

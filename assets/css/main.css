@@ -1,4 +1,4 @@
-@import "https://cdn.jsdelivr.net/npm/beercss@3.0.4/dist/cdn/beer.min.css";
+@import "https://cdn.jsdelivr.net/npm/beercss@3.6.12/dist/cdn/beer.min.css";
 
 :root,
 body.light {
@@ -29,15 +29,6 @@ body.light {
     --outline: #75786c;
     --active: rgba(0, 0, 0, .1);
     --overlay: rgba(0, 0, 0, .5);
-    --elevate1: 0 2rem 2rem 0 rgba(0, 0, 0, .14), 0 1rem 5rem 0 rgba(0, 0, 0, .12), 0 3rem 1rem -2rem rgba(0, 0, 0, .2);
-    --elevate2: 0 6rem 10rem 0 rgba(0, 0, 0, .14), 0 1rem 18rem 0 rgba(0, 0, 0, .12), 0 3rem 5rem -1rem rgba(0, 0, 0, .3);
-    --elevate3: 0 10rem 16rem 0 rgba(0, 0, 0, .14), 0 1rem 31rem 0 rgba(0, 0, 0, .12), 0 3rem 9rem 0rem rgba(0, 0, 0, .4);
-    --size: 16px;
-    --font: "Roboto Flex", "Roboto", sans-serif, system-ui, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial";
-    --speed1: .1s;
-    --speed2: .2s;
-    --speed3: .3s;
-    --speed4: .4s;
 }
 
 body.dark {
@@ -68,15 +59,6 @@ body.dark {
     --outline: #8f9285;
     --active: rgba(255, 255, 255, .2);
     --overlay: rgba(0, 0, 0, .5);
-    --elevate1: 0 2rem 2rem 0 rgba(0, 0, 0, .14), 0 1rem 5rem 0 rgba(0, 0, 0, .12), 0 3rem 1rem -2rem rgba(0, 0, 0, .2);
-    --elevate2: 0 6rem 10rem 0 rgba(0, 0, 0, .14), 0 1rem 18rem 0 rgba(0, 0, 0, .12), 0 3rem 5rem -1rem rgba(0, 0, 0, .3);
-    --elevate3: 0 10rem 16rem 0 rgba(0, 0, 0, .14), 0 1rem 31rem 0 rgba(0, 0, 0, .12), 0 3rem 9rem 0rem rgba(0, 0, 0, .4);
-    --size: 16px;
-    --font: "Roboto Flex", "Roboto", sans-serif, system-ui, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial";
-    --speed1: .1s;
-    --speed2: .2s;
-    --speed3: .3s;
-    --speed4: .4s;
 }
 
 .main-div {
@@ -110,15 +92,6 @@ body.dark {
     flex-wrap: wrap;
 }
 
-.code-block {
-    height: 239px;
-    border: 0.0625rem solid transparent;
-    background: var(--surface-variant) !important;
-    padding-top: 25px!important;
-    padding-left: 12px!important;
-    border-bottom: 1px solid var(--outline);
-    border-radius: 4px 4px 0px 0px;
-}
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -137,4 +110,23 @@ body.dark {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--on-surface-variant);
+}
+
+.reset {
+    all: unset;
+}
+
+.code-block {
+    min-height: 247px;
+    max-height: 247px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.custom-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
