@@ -1,6 +1,6 @@
 {
     "name": "momonga",
-    "version": "1.0.0",
+    "version": "1.3.0",
     "description": "A importer tool",
     "main": "main.js",
     "scripts": {
