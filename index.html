@@ -11,83 +11,16 @@
     <link href="./assets/css/main.css" rel="stylesheet" />
     <link id="code-sheet" rel="stylesheet" href="./src/highlight/styles/default.min.css">
     <script src="./src/highlight/highlight.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 
 <body>
-    <main class="responsive" style="min-height: 85vh;">
-        <div class="field label fill large s12">
-            <input id="url" type="url">
-            <label>URL</label>
-        </div>
-        <div class="field label suffix fill large s12">
-            <input id="file" type="file">
-            <input id="fileText" type="text">
-            <label>File</label>
-            <i>attach_file</i>
-        </div>
-        
-        <article class="fill scroll code-block">
-            <pre class="reset"><code class="json" style="background-color: unset;" id="result"></code></pre>
-            <footer class="fixed custom-footer">
-                <button id="download" class="transparent circle" onclick="download()" disabled="disabled">
-                    <i>download</i>
-                </button>
-                <button id="delete" class="transparent circle" onclick="deleteLog()" disabled="disabled">
-                    <i>delete</i>
-                </button>
-                <p style="margin-top: 8px;">0 / 0</p>
-            </footer>
-        </article>
-    </main>
-    <div class="overlay blur"></div>
-    <dialog id="download-popup">
-        <h5>You want to download log?</h5>
-        <div>Some text here</div>
-        <nav class="right-align no-space">
-            <button class="transparent link" onclick="deleteLog()" data-ui="#download-popup">Cancel</button>
-            <button class="transparent link" onclick="download()" data-ui="#download-popup">Confirm</button>
-        </nav>
-    </dialog>
-    <div class="snackbar pink white-text">
-        <i>error</i>
-        <span>Some text here</span>
-    </div>
-    <div id="toast-warn" class="snackbar orange white-text">
-        <i>warning</i>
-        <span>The file must be a valid json.</span>
-    </div>
-    <div id="toast-required" class="snackbar orange white-text">
-        <i>warning</i>
-        <span>File is required.</span>
-    </div>
-    <div id="toast-done" class="snackbar green white-text">
-        <i>done</i>
-        <span>Everyting is done!</span>
-    </div>
-    <div id="toast-info" class="snackbar blue white-text">
-        <i>info</i>
-        <span>Canceled!</span>
-    </div>
-    <footer class="fill">
-        <nav>
-            <div class="field large label">
-                <input id="delay" type="number" min="2" , max="10" value="2">
-                <label>Delay</label>
-            </div>
-            <div class="max"></div>
-            <button class="small-round error extra"  id="cancel" onclick="cancel()" disabled="disabled">
-                <span>Cancelar</span>
-                <i>cancel</i>
-            </button>
-            <button class="small-round tertiary extra" id="send" onclick="sendData()">
-                <div class="progress left light-green" id="progress"></div>
-                <span>Send</span>
-                <i id="icon">send</i>
-                <progress class="circle small"></progress>
-            </button>
-        </nav>
-    </footer>
-    <script src="./src/utils.js"></script>
+    <div id="app"></div>
+    <script type="module">
+        const { createApp } = Vue
+        import app from './src/app/app.js'
+        createApp(app).mount('#app')
+    </script>
     <script>
         (function () {
 
