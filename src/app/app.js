@@ -103,16 +103,16 @@ export default {
                             "Content-type": "application/json; charset=UTF-8",
                         },
                     })
-                        .then((response) => { response.json() || false })
-                        .then((json) => {
-                            result.value.push(json);
-                            i++;
-                            current.value++;
-                            showStatus(current.value, total.value);
-                            ui("#progress", i * 100 / data.length);
-                            resultArea.value = JSON.stringify(result.value, null, 4)
-                            resultArea.value = hljs.highlight(resultArea.value, { language: 'json' }).value;
-                        });
+                        .then((response) => {
+                            response.json().then((json) => {
+                                result.value.push(json);
+                                i++;
+                                current.value++;
+                                showStatus(current.value, total.value);
+                                ui("#progress", i * 100 / data.length);
+                                resultArea.value = JSON.stringify(result.value, null, 4)
+                                resultArea.value = hljs.highlight(resultArea.value, { language: 'json' }).value;
+                            }) || false });
                 }
             }
             startTime = null;
@@ -168,7 +168,7 @@ export default {
         function download() {
             var element = document.createElement('a');
             
-            element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(result, null, 4)));
+            element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(result.value, null, 4)));
             element.setAttribute('download', 'result.json');
             
             element.style.display = 'none';
@@ -247,10 +247,10 @@ export default {
                 <footer class="fixed custom-footer">
                     <p style="margin: 8px;">{{status}}</p>
                     <div>
-                        <button id="download" class="transparent circle" onclick="download()" :disabled="result.length == 0">
+                        <button id="download" class="transparent circle" @click="download" :disabled="result.length == 0">
                             <i>download</i>
                         </button>
-                        <button id="delete" class="transparent circle" onclick="deleteLog()" :disabled="result.length == 0">
+                        <button id="delete" class="transparent circle" @click="deleteLog" :disabled="result.length == 0">
                             <i>delete</i>
                         </button>
                     </div>
